@@ -43,10 +43,8 @@ class UnitController extends AbstractController
     #[Route('/unit/{id}', name: 'app_unit_patch', methods: ['PATCH'])]
     public function patch(int $id, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
-        // Pobranie jednostki z bazy danych
+
         $unit = $entityManager->getRepository(Unit::class)->find($id);
-        
-        // Pobranie danych z żądania
         $data = json_decode($request->getContent(), true);
         $verificationStatus = $data['verificationStatus'] ?? null;
 
